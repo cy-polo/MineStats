@@ -1,41 +1,40 @@
 // Coded by Polo
 // GitHub : https://github.com/cy-polo/MineStats
-// Website : https://polodeveloppement.tk/
+// Discord : https://discord.gg/bwa9aCr
 
-const Discord = require("discord.js");
-const fetch = require("node-fetch");
-const client = new Discord.Client({disableEveryone: true});
-client.commands = new Discord.Collection();
-const fs = require("fs");
-const { settingsBot } = require('./config');
+const { Client, Collection } = require("discord.js");
+const { readdir } = require("fs");
 
-fs.readdir("./Commandes/", (error, f) => {
-  if (error) {
+const client = new Client({ disableMentions: "everyone" });
+client.commands = new Collection();
+client.config = require('./config.json');
+
+readdir("./commands/", (error, files) => {
+
+  if (error)
     return console.error(error);
-  }
-  let commandes = f.filter(f => f.split(".").pop() === "js");
-  if (commandes.length <= 0) {
-    return console.log("Aucune commande trouvée !");
-  }
 
-  commandes.forEach(f => {
-    let commande = require(`./Commandes/${f}`);
-    console.log(`${f} commande chargée !`);
-    client.commands.set(commande.help.name, commande);
+  let commands = files.filter(f => f.split(".").pop() === "js");
+  if (commands.length <= 0)
+    return console.log("No commands has been found.");
+
+  commands.forEach(f => {
+    let cmd = require(`./commands/${f}`);
+    console.log(`[COMMAND] ${f} has been load.`);
+    client.commands.set(cmd.help.name, cmd);
   });
 });
 
-fs.readdir("./Events/", (error, f) => {
-  if (error) {
-    return console.error(error);
-  }
-  console.log(`${f.length} events chargés`);
+readdir("./events/", (error, files) => {
 
-  f.forEach(f => {
-    let events = require(`./Events/${f}`);
-    let event = f.split(".")[0];
-    client.on(event, events.bind(null, client));
+  if (error)
+    return console.error(error);
+
+  files.forEach(f => {
+    let eventFile = require(`./events/${f}`);
+    let eventName = f.split(".")[0];
+    client.on(eventName, eventFile.bind(null, client));
   });
 });
 
-client.login(settingsBot.token);
+client.login(client.config.setting.token).then(id => id);

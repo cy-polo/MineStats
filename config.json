@@ -1,22 +1,24 @@
 {
-    "settingsEmbed": {
-    "footer": "Bot créé par Polo#9999",
-    "image": "https://cdn.discordapp.com/avatars/542749823372361745/a_f186e8654afb481e3e82a8bae74ccfad.gif",
-    "couleur": "La couleur des embeds de ton choix"
+  "embed": {
+    "footer": {
+      "text": "Created by Polo#9999",
+      "image": "https://cdn.discordapp.com/avatars/542749823372361745/a_f186e8654afb481e3e82a8bae74ccfad.gif"
     },
-    "settingsBot": {
-    "token": "Token du bot ICI",
+    "color": "random"
+  },
+  "setting": {
+    "token": "Token Here",
     "prefix": "!"
-    },
-    "settingsServer": {
-    "idserveur": "ID DU SERVEUR ICI",
-    "idvocal": "ID DU VOCAL ICI"
-    },
-    "settingsOwner":{
-      "idowner": "ID DU CREATEUR DU BOT ICI"
-    },
-    "settingsMC": {
-    "serveurmc": "IP DU SERVEUR ICI",
-    "port": NUMERO PORT DU SERVEUR ICI
-    }
+  },
+  "guild": {
+    "guild_id": "DISCORD SERVER ID",
+    "channel_id": "DISCORD CHANNEL ID"
+  },
+  "owner": {
+    "id": "BOT'S OWNER ID"
+  },
+  "minecraft": {
+    "ip": "SERVER'S IP",
+    "port": 0
   }
+}
