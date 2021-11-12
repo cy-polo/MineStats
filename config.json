@@ -19,6 +19,6 @@
   },
   "minecraft": {
     "ip": "SERVER'S IP",
-    "port": 0
+    "port": 25565
   }
 }
