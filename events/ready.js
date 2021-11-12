@@ -23,7 +23,7 @@ module.exports = async (client) => {
     }, 3000);
 };
 
-async function updateChannelName(ip, port = 0, channel) {
+async function updateChannelName(ip, port = 25565, channel) {
     let req;
     let res;
     let base = "https://mcapi.xdefcon.com/server/";
